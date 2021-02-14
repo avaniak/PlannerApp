@@ -1,37 +1,34 @@
 package ui;
 
 import model.DecorVendorList;
-import model.Vendor;
-
-import java.util.ArrayList;
-
 import java.util.Scanner;
 
+// Planner application
 public class PlannerApp {
-//    private DecorVendorList decorlist;
-    private Vendor vendor;
+
     private Scanner input;
-    private ArrayList decorList;
+    private DecorVendorList decorList;
 
 
-    // EFFECTS: runs the planner application
+    // EFFECTS: runs the application
     public PlannerApp() {
         runPlanner();
     }
 
     // MODIFIES: this
-    // EFFECTS: run the planner app & let user choose options
+    // EFFECTS: run the planner app & let admin choose options
     // source: TellerApp (customized for the Planner App to allow admin to select actions on the console)
 
     private void runPlanner() {
         boolean keepGoing = true;
+
         String command = null;
 
         initialize();
 
         while (keepGoing) {
             adminOptions();
-            command = input.next();
+            command = input.nextLine();
             command = command.toLowerCase();
 
             if (command.equals("q")) {
@@ -43,26 +40,38 @@ public class PlannerApp {
         System.out.println("\nThank You!");
     }
 
+    // MODIFIES: this
+    // EFFECTS: run the planner app & let user choose options
+
     private void admincrudcommands(String command) {
-        if (command.equals("c")) {
-            createVendor();
-        } else if (command.equals("r")) {
-            retrieveVendor();
-        } else if (command.equals("u")) {
-            updateVendor();
-        } else if (command.equals("d")) {
-            deleteVendor();
-        } else {
-            System.out.println("Selection not valid, choose again");
+        switch (command) {
+            case "c":
+                createVendor();
+                break;
+            case "r":
+                retrieveVendor();
+                break;
+            case "u":
+                updateVendor();
+                break;
+            case "d":
+                deleteVendor();
+                break;
+            default:
+                System.out.println("Selection not valid, choose again");
+                break;
         }
     }
 
+
     // MODIFIES: this
-    // EFFECTS: initialize new vendor
+    // EFFECTS: initialize new scanner
     private void initialize() {
         input = new Scanner(System.in);
+
     }
 
+    // EFFECTS: display of the operations for the decor vendor list for admin
     private void adminOptions() {
         System.out.print("\nc : create decor vendor list");
         System.out.print("\nr : retrieve decor vendor list");
@@ -71,72 +80,49 @@ public class PlannerApp {
         System.out.print("\nq : quit");
         System.out.print("\n===========================================");
         System.out.print("\nEnter an option: ");
-
-
     }
 
+    // MODIFIES: this
+    // EFFECTS: creates a new decor vendor array list
     private void createVendor() {
-        decorList = new ArrayList();
+        decorList = new DecorVendorList();
         System.out.print("\nlist successfully created!");
-
-    }
-
-    private ArrayList retrieveVendor() {
-        return decorList;
-
-    }
-
-    private ArrayList updateVendor() {
         System.out.print("\n===========================================");
-        System.out.print("\nAdd new decor vendor to list: ");
-
-        String command = null;
-        command = input.nextLine();
-        command = command.toLowerCase();
-        decorList = addVendors(command);
-        return decorList;
     }
 
-    private ArrayList deleteVendor() {
+    // EFFECTS: retrieves newly created decor vendor array list
+    private void retrieveVendor() {
+        decorList.isEmpty();
+    }
+
+    // MODIFIES: this
+    // EFFECTS: allows admin to delete name added to the decor vendor array list
+    private DecorVendorList deleteVendor() {
         System.out.print("\n===========================================");
         System.out.print("\nremove vendor from the list: ");
 
         String command = null;
-        command = input.next();
+        command = input.nextLine();
         command = command.toLowerCase();
-        decorList = removeVendors(command);
-        return decorList;
-
-    }
-
-    private ArrayList removeVendors(String vendorName) {
-        decorList.remove(vendorName);
+        decorList.removeVendors(command);
+        System.out.print("\n===========================================");
+        System.out.print("\nVendor removed from list successfully!");
         return decorList;
     }
 
-    private ArrayList getDecorList () {
+    // REQUIRES: business name for the decor vendor
+    // MODIFIES: this
+    // EFFECTS: allows admin to update & add names to newly created decor vendor array list
+
+    private DecorVendorList updateVendor() {
+        System.out.println("\n===========================================");
+        System.out.print("\nAdd new decor vendor to list: ");
+        String command = input.nextLine();
+        command = command.toLowerCase();
+        decorList.addVendors(command);
+        System.out.print("\nVendor(s) added successfully!");
+        System.out.print("\n===========================================");
         return decorList;
     }
-
-    private ArrayList addVendors(String vendorName) {
-        decorList.add(vendorName);
-        return decorList;
-    }
-
 
 }
-
-//    private DecorVendorList selectVendor() {
-//        String selection = "";
-//
-//        while (selection.equals("d")) {
-//            System.out.println("d -> Decor Vendor List");
-//            selection = input.next();
-//            selection = selection.toLowerCase();
-//        }
-//        if (selection.equals("d")) {
-//            return decorlist;
-//        }
-//        return null;
-//    }
-

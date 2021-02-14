@@ -19,4 +19,26 @@ public class DecorVendorList {
         return decorList;
     }
 
+    // EFFECTS: Print messages if retrieved list is empty
+    public boolean isEmpty() {
+        if (decorList.isEmpty()) {
+            System.out.print("\nThis list is empty, please add some vendors");
+            System.out.print("\n===========================================");
+            return true;
+        } else {
+            System.out.println(decorList);
+            return false;
+        }
+    }
+
+    // EFFECTS: gets the size of list
+    public int getSize() {
+        return decorList.size();
+    }
+
+    // EFFECTS: check whether list contains the given string
+    public boolean listcontains(String vendorName) {
+        return decorList.contains(vendorName);
+    }
+
 }
