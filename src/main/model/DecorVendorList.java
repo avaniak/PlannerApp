@@ -1,8 +1,11 @@
 package model;
 
+import org.json.JSONObject;
+import persistence.Writable;
+
 import java.util.ArrayList;
 
-public class DecorVendorList {
+public class DecorVendorList implements Writable {
     ArrayList<String> decorList = new ArrayList<>();
 
     // MODIFIES: this
@@ -41,4 +44,8 @@ public class DecorVendorList {
         return decorList.contains(vendorName);
     }
 
+    @Override
+    public JSONObject toJson() {
+        return null;
+    }
 }
