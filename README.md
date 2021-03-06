@@ -22,6 +22,8 @@ For Phase 1 of my project, I wanted to implement an admin view console where:
 - As an admin, I am able to update the newly created Vendor List with one or more vendor names
 - As an admin, I am able to retrieve and read the vendor list 
 - As an admin, I am able to delete a vendor name from the Vendor List 
+- As an admin, I am able to save the vendor list 
+- As an admin, I am able to load a saved vendor list
 
 This project is of interest to me because I have worked as a wedding planner for 3 years and closely observed the 
 industry. This is a pain point for majority of the weddings due to the saturation of various event-vendors these days. 

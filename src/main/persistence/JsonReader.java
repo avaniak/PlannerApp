@@ -43,7 +43,7 @@ public class JsonReader {
     }
 
     private void addVendors(VendorList vl, JSONObject jsonObject) {
-        JSONArray jsonArray = jsonObject.getJSONArray("vendors");
+        JSONArray jsonArray = jsonObject.getJSONArray("vendor list");
         for (Object json : jsonArray) {
             JSONObject nextvendor = (JSONObject) json;
             addVendor(vl, nextvendor);
@@ -51,7 +51,7 @@ public class JsonReader {
     }
 
     private void addVendor(VendorList vl, JSONObject jsonObject) {
-        String name = jsonObject.getString("vendors");
+        String name = jsonObject.getString("name");
         Category category = Category.valueOf(jsonObject.getString("category"));
         Vendor vendor = new Vendor(name, category);
         vl.addVendors(vendor);

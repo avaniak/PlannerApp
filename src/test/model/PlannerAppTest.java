@@ -7,96 +7,116 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class PlannerAppTest {
 
-    DecorVendorList testdecorlist;
+    VendorList testvendorlist;
+    VendorList name;
+    String vendorname;
+    Category category;
 
     @BeforeEach
     public void setup() {
-        testdecorlist = new DecorVendorList();
+        testvendorlist = new VendorList("Vendor List");
+    }
+
+    @Test
+    void testconstructor() {
+        assertEquals("Vendor List", testvendorlist.getName());
+        assertTrue(testvendorlist.isEmpty());
     }
 
     @Test
     public void testaddonevendor() {
-        testdecorlist.addVendors("Red Carpet Decor");
-        assertTrue(testdecorlist.listcontains("Red Carpet Decor"));
+        testvendorlist.addVendors(new Vendor("Red Carpet Decor", Category.DECOR));
+        assertEquals(1, testvendorlist.getSize());
     }
 
 
     @Test
     public void testaddmultiplevendors() {
-        testdecorlist.addVendors("Red Carpet Decor");
-        testdecorlist.addVendors("Beautiful Events");
-        testdecorlist.addVendors("Always & Forever Events");
-        assertEquals(3, testdecorlist.getSize());
+        testvendorlist.addVendors(new Vendor("Red Carpet Decor", Category.DECOR));
+        testvendorlist.addVendors(new Vendor("Beautiful Events", Category.DECOR));
+        testvendorlist.addVendors(new Vendor("Always & Forever Events", Category.DECOR));
+        assertEquals(3, testvendorlist.getSize());
     }
 
     @Test
     public void testremoveonevendorlastadded() {
-        testdecorlist.addVendors("Red Carpet Decor");
-        testdecorlist.addVendors("Beautiful Events");
-        testdecorlist.removeVendors("Beautiful Events");
-        assertEquals(1, testdecorlist.getSize());
-        assertFalse(testdecorlist.listcontains("Beautiful Events"));
+        testvendorlist.addVendors(new Vendor("Red Carpet Decor", Category.DECOR));
+        testvendorlist.addVendors(new Vendor("Beautiful Events", Category.DECOR));
+        testvendorlist.removeVendors("Beautiful Events");
+        assertEquals(1, testvendorlist.getSize());
+        assertFalse(testvendorlist.listcontains(new Vendor("Beautiful Events", Category.DECOR)));
     }
 
     @Test
     public void testremoveonevendorfirstadded() {
-        testdecorlist.addVendors("Red Carpet Decor");
-        testdecorlist.addVendors("Beautiful Events");
-        testdecorlist.addVendors("Always & Forever Events");
-        testdecorlist.removeVendors("Red Carpet Decor");
-        assertEquals(2, testdecorlist.getSize());
-        assertFalse(testdecorlist.listcontains("Red Carpet Decor"));
+        testvendorlist.addVendors(new Vendor("Red Carpet Decor", Category.DECOR));
+        testvendorlist.addVendors(new Vendor("Beautiful Events", Category.DECOR));
+        testvendorlist.addVendors(new Vendor("Always & Forever Events", Category.DECOR));
+        testvendorlist.removeVendors("Always & Forever Events");
+        assertEquals(2, testvendorlist.getSize());
+        assertFalse(testvendorlist.listcontains(new Vendor("Always & Forever Events", Category.DECOR)));
     }
 
     @Test
     public void testremoveonevendormiddle() {
-        testdecorlist.addVendors("Red Carpet Decor");
-        testdecorlist.addVendors("Beautiful Events");
-        testdecorlist.addVendors("Always & Forever Events");
-        testdecorlist.removeVendors("Beautiful Events");
-        assertEquals(2, testdecorlist.getSize());
-        assertFalse(testdecorlist.listcontains("Beautiful Events"));
+        testvendorlist.addVendors(new Vendor("Red Carpet Decor", Category.DECOR));
+        testvendorlist.addVendors(new Vendor("Beautiful Events", Category.DECOR));
+        testvendorlist.addVendors(new Vendor("Always & Forever Events", Category.DECOR));
+        testvendorlist.removeVendors("Beautiful Events");
+        assertEquals(2, testvendorlist.getSize());
+        assertFalse(testvendorlist.listcontains(new Vendor("Beautiful Events", Category.DECOR)));
     }
 
     @Test
     public void testremovemultiplevendors() {
-        testdecorlist.addVendors("Red Carpet Decor");
-        testdecorlist.addVendors("Beautiful Events");
-        testdecorlist.addVendors("Always & Forever Events");
-        testdecorlist.addVendors("Universal Decor");
-        testdecorlist.removeVendors("Beautiful Events");
-        testdecorlist.removeVendors("Always & Forever Events");
-        assertEquals(2, testdecorlist.getSize());
-        assertFalse(testdecorlist.listcontains("Beautiful Events"));
-        assertFalse(testdecorlist.listcontains("Always & Forever Events"));
+        testvendorlist.addVendors(new Vendor("Red Carpet Decor", Category.DECOR));
+        testvendorlist.addVendors(new Vendor("Beautiful Events", Category.DECOR));
+        testvendorlist.addVendors(new Vendor("Always & Forever Events", Category.DECOR));
+        testvendorlist.addVendors(new Vendor("Flora", Category.FLORIST));
+        testvendorlist.removeVendors("Beautiful Events");
+        testvendorlist.removeVendors("Flora");
+        assertEquals(2, testvendorlist.getSize());
+        assertFalse(testvendorlist.listcontains(new Vendor("Beautiful Events", Category.DECOR)));
+        assertFalse(testvendorlist.listcontains(new Vendor("Flora", Category.FLORIST)));
 
     }
 
     @Test
     public void testremoveallvendors() {
-        testdecorlist.addVendors("Red Carpet Decor");
-        testdecorlist.addVendors("Beautiful Events");
-        testdecorlist.addVendors("Always & Forever Events");
-        testdecorlist.removeVendors("Red Carpet Decor");
-        testdecorlist.removeVendors("Beautiful Events");
-        testdecorlist.removeVendors("Always & Forever Events");
-        assertEquals(0, testdecorlist.getSize());
+        testvendorlist.addVendors(new Vendor("Red Carpet Decor", Category.DECOR));
+        testvendorlist.addVendors(new Vendor("Beautiful Events", Category.DECOR));
+        testvendorlist.addVendors(new Vendor("Always & Forever Events", Category.DECOR));
+        testvendorlist.removeVendors("Red Carpet Decor");
+        testvendorlist.removeVendors("Beautiful Events");
+        testvendorlist.removeVendors("Always & Forever Events");
+        assertEquals(0, testvendorlist.getSize());
     }
 
     @Test
     public void testlistempty() {
-        testdecorlist.addVendors("Red Carpet Decor");
-        testdecorlist.removeVendors("Red Carpet Decor");
-        assertEquals(0, testdecorlist.getSize());
-        assertTrue(testdecorlist.isEmpty());
+        testvendorlist.addVendors(new Vendor("Red Carpet Decor", Category.DECOR));
+        testvendorlist.removeVendors("Red Carpet Decor");
+        assertEquals(0, testvendorlist.getSize());
+        assertTrue(testvendorlist.isEmpty());
+        assertTrue(testvendorlist.retrieveVendor());
     }
 
     @Test
     public void testlistnotempty() {
-        testdecorlist.addVendors("Red Carpet Decor");
-        testdecorlist.addVendors("Beautiful Events");
-        testdecorlist.removeVendors("Red Carpet Decor");
-        assertEquals(1, testdecorlist.getSize());
-        assertFalse(testdecorlist.isEmpty());
+        testvendorlist.addVendors(new Vendor("Beautiful Events", Category.DECOR));
+        testvendorlist.addVendors(new Vendor("Flora", Category.FLORIST));
+        testvendorlist.removeVendors("Beautiful Events");
+        assertEquals(1, testvendorlist.getSize());
+        assertFalse(testvendorlist.isEmpty());
+        assertFalse(testvendorlist.retrieveVendor());
+    }
+
+    @Test
+    public void testremovevendornotinlist() {
+        testvendorlist.addVendors(new Vendor("Beautiful Events", Category.DECOR));
+        testvendorlist.addVendors(new Vendor("Always & Forever Events", Category.DECOR));
+        assertEquals(2, testvendorlist.getSize());
+        testvendorlist.removeVendors("Red Carpet Decor");
+        assertEquals(2, testvendorlist.getSize());
     }
 }

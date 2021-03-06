@@ -1,0 +1,13 @@
+{
+    "vendor list": [
+        {
+            "name": "Red Carpet Decor",
+            "category": "DECOR"
+        },
+        {
+            "name": "Flora",
+            "category": "FLORIST"
+        }
+    ],
+    "name": "Vendor List"
+}

@@ -1,0 +1,17 @@
+{
+    "vendor list": [
+        {
+            "name": "red carpet decor",
+            "category": "DECOR"
+        },
+        {
+            "name": "beautiful events",
+            "category": "DECOR"
+        },
+        {
+            "name": "flora",
+            "category": "FLORIST"
+        }
+    ],
+    "name": "vendor list"
+}

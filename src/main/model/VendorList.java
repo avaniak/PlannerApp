@@ -29,21 +29,29 @@ public class VendorList implements Writable {
     // MODIFIES: this
     // EFFECTS: helper function for deleting decor vendor name from list
     public void removeVendors(String name) {
+        Vendor found = null;
         for (Vendor v : vendorList) {
-            if (v.getName() == name) {
-                vendorList.remove(v);
-            } else System.out.println(name + "not found");
+            if (name.equals(v.getName())) {
+                found = v;
+            }
+        }
+        if (found != null) {
+            vendorList.remove(found);
+        } else {
+            System.out.println(name + " not found");
         }
     }
 
     // EFFECTS: Print messages if retrieved list is empty
-    public boolean isEmpty() {
+    public boolean retrieveVendor() {
         if (vendorList.isEmpty()) {
             System.out.print("\nThis list is empty, please add some vendors");
             System.out.print("\n===========================================");
             return true;
         } else {
-            System.out.println(vendorList);
+            for (Vendor v : vendorList) {
+                System.out.println(v.getCategory() + " : " + v.getName());
+            }
             return false;
         }
     }
@@ -51,6 +59,10 @@ public class VendorList implements Writable {
     // EFFECTS: gets the size of list
     public int getSize() {
         return vendorList.size();
+    }
+
+    public boolean isEmpty() {
+        return vendorList.isEmpty();
     }
 
     // EFFECTS: check whether list contains the given string
@@ -62,7 +74,7 @@ public class VendorList implements Writable {
     public JSONObject toJson() {
         JSONObject json = new JSONObject();
         json.put("name", name);
-        json.put("vendor list", vendorList);
+        json.put("vendor list", vendorlisttoJson());
         return json;
     }
 

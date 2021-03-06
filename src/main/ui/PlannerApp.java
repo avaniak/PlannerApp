@@ -39,7 +39,7 @@ public class PlannerApp {
 
         while (keepGoing) {
             adminOptions();
-            command = input.next();
+            command = input.nextLine();
             command = command.toLowerCase();
 
             if (command.equals("q")) {
@@ -95,7 +95,7 @@ public class PlannerApp {
 
     // EFFECTS: retrieves newly created decor vendor array list
     private void retrieveVendor() {
-        vendorList.isEmpty();
+        vendorList.retrieveVendor();
     }
 
     // MODIFIES: this
@@ -103,9 +103,7 @@ public class PlannerApp {
     private VendorList deleteVendor() {
         System.out.print("\n===========================================");
         System.out.print("\nremove vendor from the list: ");
-
-        String command = null;
-        command = input.next();
+        String command = input.nextLine();
         command = command.toLowerCase();
         vendorList.removeVendors(command);
         System.out.print("\n===========================================");
@@ -121,8 +119,8 @@ public class PlannerApp {
         Category category = readCategory();
         System.out.println("\n===========================================");
         System.out.println("\nAdd new vendor to list: ");
-        String command = null;
-        command = input.next();
+        input.nextLine();
+        String command = input.nextLine();
         command = command.toLowerCase();
         vendorList.addVendors(new Vendor(command, category));
         System.out.print("\nVendor(s) added successfully!");
