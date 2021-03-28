@@ -119,4 +119,19 @@ class PlannerAppTest {
         testvendorlist.removeVendors("Red Carpet Decor");
         assertEquals(2, testvendorlist.getSize());
     }
+
+    @Test
+    public void testiterattor() {
+        Vendor v1 = new Vendor("Beautiful Events", Category.DECOR);
+        Vendor v2 = new Vendor("Always & Forever Events", Category.DECOR);
+        testvendorlist.addVendors(v1);
+        testvendorlist.addVendors(v2);
+        assertEquals("Beautiful Events", testvendorlist.iterator().next().getName());
+        assertTrue(testvendorlist.iterator().hasNext());
+        testvendorlist.removeVendors("Beautiful Events");
+        assertEquals("Always & Forever Events", testvendorlist.iterator().next().getName());
+        assertEquals(1, testvendorlist.getSize());
+        testvendorlist.removeVendors("Always & Forever Events");
+        assertFalse(testvendorlist.iterator().hasNext());
+    }
 }
