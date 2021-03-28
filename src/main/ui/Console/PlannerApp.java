@@ -1,4 +1,4 @@
-package ui;
+package ui.Console;
 
 import model.Category;
 import model.Vendor;
@@ -22,7 +22,7 @@ public class PlannerApp {
     // EFFECTS: runs the application
     public PlannerApp() throws FileNotFoundException {
         input = new Scanner(System.in);
-        vendorList = new VendorList("vendor list");
+        vendorList = new VendorList("Vendor List");
         jsonWriter = new JsonWriter(JSON_STORE);
         jsonReader = new JsonReader(JSON_STORE);
         runPlanner();
@@ -88,7 +88,7 @@ public class PlannerApp {
     // MODIFIES: this
     // EFFECTS: creates a new decor vendor array list
     private void createVendor() {
-        vendorList = new VendorList("vendor list");
+        vendorList = new VendorList("Vendor List");
         System.out.print("\nlist successfully created!");
         System.out.print("\n===========================================");
     }
@@ -146,7 +146,7 @@ public class PlannerApp {
             jsonWriter.open();
             jsonWriter.write(vendorList);
             jsonWriter.close();
-            System.out.println("Saved " + vendorList.getName() + " to " + JSON_STORE);
+            System.out.println("Saved " + " to " + JSON_STORE);
         } catch (FileNotFoundException e) {
             System.out.println("Unable to write to file " + JSON_STORE);
         }
@@ -155,7 +155,7 @@ public class PlannerApp {
     private void loadVendor() {
         try {
             vendorList = jsonReader.read();
-            System.out.println("Loaded " + vendorList.getName() + " from " + JSON_STORE);
+            System.out.println("Loaded " + " from " + JSON_STORE);
         } catch (IOException e) {
             System.out.println("Unable to read from file " + JSON_STORE);
         }

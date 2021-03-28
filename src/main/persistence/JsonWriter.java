@@ -12,6 +12,7 @@ public class JsonWriter {
     private PrintWriter writer;
     private String destination;
 
+
     public JsonWriter(String destination) {
         this.destination = destination;
     }
@@ -20,8 +21,8 @@ public class JsonWriter {
         writer = new PrintWriter(new File(destination));
     }
 
-    public void write(VendorList vl) {
-        JSONObject json = vl.toJson();
+    public void write(VendorList vendors) {
+        JSONObject json = vendors.toJson();
         saveToFile(json.toString(TAB));
     }
 

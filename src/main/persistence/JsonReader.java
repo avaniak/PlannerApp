@@ -37,7 +37,7 @@ public class JsonReader {
 
     private VendorList parseVendorList(JSONObject jsonObject) {
         String name = jsonObject.getString("name");
-        VendorList vl = new VendorList(name);
+        VendorList vl = new VendorList("Vendor List");
         addVendors(vl, jsonObject);
         return vl;
     }

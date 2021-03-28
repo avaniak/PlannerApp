@@ -5,8 +5,9 @@ import org.json.JSONObject;
 import persistence.Writable;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
-public class VendorList implements Writable {
+public class VendorList implements Writable, Iterable<Vendor> {
     private String name;
     ArrayList<Vendor> vendorList;
 
@@ -25,6 +26,8 @@ public class VendorList implements Writable {
     public String getName() {
         return name;
     }
+
+
 
     // MODIFIES: this
     // EFFECTS: helper function for deleting decor vendor name from list
@@ -85,6 +88,11 @@ public class VendorList implements Writable {
             jsonArray.put(v.toJson());
         }
         return jsonArray;
+    }
+
+    @Override
+    public Iterator<Vendor> iterator() {
+        return vendorList.iterator();
     }
 }
 

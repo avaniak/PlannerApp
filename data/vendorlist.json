@@ -1,17 +1,21 @@
 {
     "vendor list": [
         {
-            "name": "red carpet decor",
+            "name": "Red Carpet Decor",
             "category": "DECOR"
         },
         {
-            "name": "beautiful events",
+            "name": "Beautiful Events ",
             "category": "DECOR"
         },
         {
-            "name": "flora",
+            "name": "Always & Forever ",
             "category": "FLORIST"
+        },
+        {
+            "name": "Into the Lens Photo ",
+            "category": "PHOTOGRAPHER"
         }
     ],
-    "name": "vendor list"
+    "name": "Vendor List"
 }
