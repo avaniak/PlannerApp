@@ -225,7 +225,7 @@ public class MainJFrame extends JFrame {
                 System.out.println(nameTextField.getText());
                 displayVendorList();
                 messagebox.setText("Vendor Added!");
-                }
+            }
         });
     }
 

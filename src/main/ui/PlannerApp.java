@@ -1,4 +1,4 @@
-package ui.Console;
+package ui;
 
 import model.Category;
 import model.Vendor;
