@@ -1,5 +1,6 @@
 package persistence;
 
+import exceptions.StringEmptyException;
 import model.Category;
 import model.Vendor;
 import model.VendorList;
@@ -36,7 +37,7 @@ public class JsonWriterTest extends JsonTest {
             vl = reader.read();
 //            assertEquals("Vendor List", vl.getName());
             assertEquals(0, vl.getSize());
-        } catch (IOException e) {
+        } catch (IOException | StringEmptyException e) {
             fail("Exception should not have been thrown");
         }
     }
@@ -58,6 +59,8 @@ public class JsonWriterTest extends JsonTest {
             assertEquals(2, vl.getSize());
         } catch (IOException e) {
             fail("Exception should not have been thrown");
+        } catch (StringEmptyException e) {
+            fail("exception should not have been thrown");
         }
     }
 

@@ -1,5 +1,6 @@
 package persistence;
 
+import exceptions.StringEmptyException;
 import model.VendorList;
 import org.junit.jupiter.api.Test;
 
@@ -15,7 +16,7 @@ public class JsonReaderTest extends JsonTest {
         try {
             VendorList vl = reader.read();
             fail("IOException expected");
-        } catch (IOException e) {
+        } catch (IOException | StringEmptyException e) {
         }
     }
 

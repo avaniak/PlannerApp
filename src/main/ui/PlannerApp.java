@@ -1,5 +1,7 @@
 package ui;
 
+import exceptions.NameNotFoundException;
+import exceptions.StringEmptyException;
 import model.Category;
 import model.Vendor;
 import model.VendorList;
@@ -105,7 +107,11 @@ public class PlannerApp {
         System.out.print("\nremove vendor from the list: ");
         String command = input.nextLine();
         command = command.toLowerCase();
-        vendorList.removeVendors(command);
+        try {
+            vendorList.removeVendors(command);
+        } catch (NameNotFoundException e) {
+            System.out.println("Vendor not found in list");
+        }
         System.out.print("\n===========================================");
         System.out.print("\nVendor removed from list successfully!");
         return vendorList;
@@ -156,7 +162,7 @@ public class PlannerApp {
         try {
             vendorList = jsonReader.read();
             System.out.println("Loaded " + " from " + JSON_STORE);
-        } catch (IOException e) {
+        } catch (IOException | StringEmptyException e) {
             System.out.println("Unable to read from file " + JSON_STORE);
         }
     }

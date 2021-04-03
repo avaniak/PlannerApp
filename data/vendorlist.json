@@ -5,16 +5,16 @@
             "category": "DECOR"
         },
         {
-            "name": "Beautiful Events ",
-            "category": "DECOR"
-        },
-        {
-            "name": "Always & Forever ",
-            "category": "FLORIST"
-        },
-        {
             "name": "Into the Lens Photo ",
             "category": "PHOTOGRAPHER"
+        },
+        {
+            "name": "Always & Forever Events",
+            "category": "VENUE"
+        },
+        {
+            "name": "Beautiful Events ",
+            "category": "VENUE"
         }
     ],
     "name": "Vendor List"

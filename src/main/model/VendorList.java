@@ -1,5 +1,6 @@
 package model;
 
+import exceptions.NameNotFoundException;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import persistence.Writable;
@@ -31,7 +32,7 @@ public class VendorList implements Writable, Iterable<Vendor> {
 
     // MODIFIES: this
     // EFFECTS: helper function for deleting decor vendor name from list
-    public void removeVendors(String name) {
+    public void removeVendors(String name) throws NameNotFoundException {
         Vendor found = null;
         for (Vendor v : vendorList) {
             if (name.equals(v.getName())) {
@@ -41,7 +42,8 @@ public class VendorList implements Writable, Iterable<Vendor> {
         if (found != null) {
             vendorList.remove(found);
         } else {
-            System.out.println(name + " not found");
+            throw new NameNotFoundException();
+//            System.out.println(name + " not found");
         }
     }
 

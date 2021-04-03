@@ -1,5 +1,8 @@
 package ui;
 
+import exceptions.ListNotFoundException;
+import exceptions.NameNotFoundException;
+import exceptions.StringEmptyException;
 import model.Category;
 import model.Vendor;
 import model.VendorList;
@@ -37,6 +40,7 @@ public class MainJFrame extends JFrame {
     private static final String JSON_STORE = "./data/vendorlist.json";
 
 
+    // EFFECTS: Create MainJFrame Window with Text Area
     public MainJFrame() throws FileNotFoundException, IOException {
 
         // EFFECTS: Set main text area dimensions
@@ -160,7 +164,7 @@ public class MainJFrame extends JFrame {
                     JOptionPane.showMessageDialog(null, "Vendor List Loaded!");
                     messagebox.setText("Vendor List Loaded!");
 
-                } catch (IOException en) {
+                } catch (IOException | StringEmptyException en) {
                     System.out.println("Unable to read from file " + JSON_STORE);
                 }
             }
@@ -183,13 +187,28 @@ public class MainJFrame extends JFrame {
         deleteVendorList.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                vendorList.removeVendors(nameTextField.getText());
-                displayVendorList();
-                JOptionPane.showMessageDialog(null, "Vendor Deleted");
-                messagebox.setText("Vendor Deleted!");
+                String vendorname = nameTextField.getText();
+                if (vendorname.isEmpty()) {
+                    try {
+                        throw new StringEmptyException();
+                    } catch (StringEmptyException exc) {
+                        JOptionPane.showMessageDialog(null, "Vendor name cannot be empty");
+                    }
+                }
+
+                try {
+                    vendorList.removeVendors(nameTextField.getText());
+                    displayVendorList();
+                    JOptionPane.showMessageDialog(null, "Vendor Deleted");
+                    messagebox.setText("Vendor Deleted!");
+                } catch (NameNotFoundException nameNotFoundException) {
+                    JOptionPane.showMessageDialog(null, "Vendor name not found");
+                }
+
             }
         });
     }
+
 
     // REQUIRES: button
     // MODIFIES: list
@@ -221,13 +240,35 @@ public class MainJFrame extends JFrame {
             @Override
             public void actionPerformed(ActionEvent event) {
                 Category category = (Category) vendorCategories.getSelectedItem();
-                vendorList.addVendors(new Vendor(nameTextField.getText(), category));
-                System.out.println(nameTextField.getText());
-                displayVendorList();
-                messagebox.setText("Vendor Added!");
+                String vendorname = nameTextField.getText();
+                if (vendorList == null) {
+                    try {
+                        throw new ListNotFoundException();
+                    } catch (ListNotFoundException | NullPointerException ex) {
+                        JOptionPane.showMessageDialog(null, "List not found: Create a new list");
+                    }
+                }
+
+                if (vendorname.isEmpty()) {
+                    try {
+                        throw new StringEmptyException();
+                    } catch (StringEmptyException e) {
+                        JOptionPane.showMessageDialog(null, "Vendor name cannot be empty");
+                    }
+                } else {
+                    addVendorinTextField(category, vendorname);
+                }
             }
         });
     }
+
+    private void addVendorinTextField(Category category, String vendorname) {
+        vendorList.addVendors(new Vendor(vendorname, category));
+        System.out.println(nameTextField.getText());
+        displayVendorList();
+        messagebox.setText("Vendor Added!");
+    }
+
 
     // EFFECTS: Selects category from the JComboBox
     private void selectVendorfromDropdown() {

@@ -1,5 +1,6 @@
 package persistence;
 
+import exceptions.StringEmptyException;
 import model.Category;
 import model.Vendor;
 import model.VendorList;
@@ -20,7 +21,7 @@ public class JsonReader {
         this.source = source;
     }
 
-    public VendorList read() throws IOException {
+    public VendorList read() throws IOException, StringEmptyException {
         String jsonData = readFile(source);
         JSONObject jsonObject = new JSONObject(jsonData);
         return parseVendorList(jsonObject);
@@ -35,14 +36,14 @@ public class JsonReader {
         return contentBuilder.toString();
     }
 
-    private VendorList parseVendorList(JSONObject jsonObject) {
+    private VendorList parseVendorList(JSONObject jsonObject) throws StringEmptyException {
         String name = jsonObject.getString("name");
         VendorList vl = new VendorList("Vendor List");
         addVendors(vl, jsonObject);
         return vl;
     }
 
-    private void addVendors(VendorList vl, JSONObject jsonObject) {
+    private void addVendors(VendorList vl, JSONObject jsonObject) throws StringEmptyException {
         JSONArray jsonArray = jsonObject.getJSONArray("vendor list");
         for (Object json : jsonArray) {
             JSONObject nextvendor = (JSONObject) json;
@@ -50,7 +51,7 @@ public class JsonReader {
         }
     }
 
-    private void addVendor(VendorList vl, JSONObject jsonObject) {
+    private void addVendor(VendorList vl, JSONObject jsonObject) throws StringEmptyException {
         String name = jsonObject.getString("name");
         Category category = Category.valueOf(jsonObject.getString("category"));
         Vendor vendor = new Vendor(name, category);

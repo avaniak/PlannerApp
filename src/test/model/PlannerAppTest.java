@@ -1,5 +1,6 @@
 package model;
 
+import exceptions.NameNotFoundException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -8,9 +9,6 @@ import static org.junit.jupiter.api.Assertions.*;
 class PlannerAppTest {
 
     VendorList testvendorlist;
-    VendorList name;
-    String vendorname;
-    Category category;
 
     @BeforeEach
     public void setup() {
@@ -42,7 +40,11 @@ class PlannerAppTest {
     public void testremoveonevendorlastadded() {
         testvendorlist.addVendors(new Vendor("Red Carpet Decor", Category.DECOR));
         testvendorlist.addVendors(new Vendor("Beautiful Events", Category.DECOR));
-        testvendorlist.removeVendors("Beautiful Events");
+        try {
+            testvendorlist.removeVendors("Beautiful Events");
+        } catch (NameNotFoundException e) {
+            fail("Exception not thrown");
+        }
         assertEquals(1, testvendorlist.getSize());
         assertFalse(testvendorlist.listcontains(new Vendor("Beautiful Events", Category.DECOR)));
     }
@@ -52,7 +54,11 @@ class PlannerAppTest {
         testvendorlist.addVendors(new Vendor("Red Carpet Decor", Category.DECOR));
         testvendorlist.addVendors(new Vendor("Beautiful Events", Category.DECOR));
         testvendorlist.addVendors(new Vendor("Always & Forever Events", Category.DECOR));
-        testvendorlist.removeVendors("Always & Forever Events");
+        try {
+            testvendorlist.removeVendors("Always & Forever Events");
+        } catch (NameNotFoundException e) {
+            fail("Exception not thrown");
+        }
         assertEquals(2, testvendorlist.getSize());
         assertFalse(testvendorlist.listcontains(new Vendor("Always & Forever Events", Category.DECOR)));
     }
@@ -62,7 +68,11 @@ class PlannerAppTest {
         testvendorlist.addVendors(new Vendor("Red Carpet Decor", Category.DECOR));
         testvendorlist.addVendors(new Vendor("Beautiful Events", Category.DECOR));
         testvendorlist.addVendors(new Vendor("Always & Forever Events", Category.DECOR));
-        testvendorlist.removeVendors("Beautiful Events");
+        try {
+            testvendorlist.removeVendors("Beautiful Events");
+        } catch (NameNotFoundException e) {
+            fail("Exception not thrown");
+        }
         assertEquals(2, testvendorlist.getSize());
         assertFalse(testvendorlist.listcontains(new Vendor("Beautiful Events", Category.DECOR)));
     }
@@ -73,8 +83,13 @@ class PlannerAppTest {
         testvendorlist.addVendors(new Vendor("Beautiful Events", Category.DECOR));
         testvendorlist.addVendors(new Vendor("Always & Forever Events", Category.DECOR));
         testvendorlist.addVendors(new Vendor("Flora", Category.FLORIST));
-        testvendorlist.removeVendors("Beautiful Events");
-        testvendorlist.removeVendors("Flora");
+        try {
+            testvendorlist.removeVendors("Beautiful Events");
+            testvendorlist.removeVendors("Flora");
+        } catch (NameNotFoundException e) {
+            fail("Exception not thrown");
+        }
+
         assertEquals(2, testvendorlist.getSize());
         assertFalse(testvendorlist.listcontains(new Vendor("Beautiful Events", Category.DECOR)));
         assertFalse(testvendorlist.listcontains(new Vendor("Flora", Category.FLORIST)));
@@ -86,16 +101,25 @@ class PlannerAppTest {
         testvendorlist.addVendors(new Vendor("Red Carpet Decor", Category.DECOR));
         testvendorlist.addVendors(new Vendor("Beautiful Events", Category.DECOR));
         testvendorlist.addVendors(new Vendor("Always & Forever Events", Category.DECOR));
-        testvendorlist.removeVendors("Red Carpet Decor");
-        testvendorlist.removeVendors("Beautiful Events");
-        testvendorlist.removeVendors("Always & Forever Events");
+        try {
+            testvendorlist.removeVendors("Red Carpet Decor");
+            testvendorlist.removeVendors("Beautiful Events");
+            testvendorlist.removeVendors("Always & Forever Events");
+        } catch (NameNotFoundException e) {
+            fail("Exception not thrown");
+        }
+
         assertEquals(0, testvendorlist.getSize());
     }
 
     @Test
     public void testlistempty() {
         testvendorlist.addVendors(new Vendor("Red Carpet Decor", Category.DECOR));
-        testvendorlist.removeVendors("Red Carpet Decor");
+        try {
+            testvendorlist.removeVendors("Red Carpet Decor");
+        } catch (NameNotFoundException e) {
+            fail("Exception not thrown");
+        }
         assertEquals(0, testvendorlist.getSize());
         assertTrue(testvendorlist.isEmpty());
         assertTrue(testvendorlist.retrieveVendor());
@@ -105,7 +129,11 @@ class PlannerAppTest {
     public void testlistnotempty() {
         testvendorlist.addVendors(new Vendor("Beautiful Events", Category.DECOR));
         testvendorlist.addVendors(new Vendor("Flora", Category.FLORIST));
-        testvendorlist.removeVendors("Beautiful Events");
+        try {
+            testvendorlist.removeVendors("Beautiful Events");
+        } catch (NameNotFoundException e) {
+            fail("Exception not thrown");
+        }
         assertEquals(1, testvendorlist.getSize());
         assertFalse(testvendorlist.isEmpty());
         assertFalse(testvendorlist.retrieveVendor());
@@ -116,7 +144,11 @@ class PlannerAppTest {
         testvendorlist.addVendors(new Vendor("Beautiful Events", Category.DECOR));
         testvendorlist.addVendors(new Vendor("Always & Forever Events", Category.DECOR));
         assertEquals(2, testvendorlist.getSize());
-        testvendorlist.removeVendors("Red Carpet Decor");
+        try {
+            testvendorlist.removeVendors("Red Carpet Decor");
+        } catch (NameNotFoundException e) {
+            System.out.println("Vendor not in list");
+        }
         assertEquals(2, testvendorlist.getSize());
     }
 
@@ -128,10 +160,18 @@ class PlannerAppTest {
         testvendorlist.addVendors(v2);
         assertEquals("Beautiful Events", testvendorlist.iterator().next().getName());
         assertTrue(testvendorlist.iterator().hasNext());
-        testvendorlist.removeVendors("Beautiful Events");
+        try {
+            testvendorlist.removeVendors("Beautiful Events");
+        } catch (NameNotFoundException e) {
+            fail("Exception not thrown");
+        }
         assertEquals("Always & Forever Events", testvendorlist.iterator().next().getName());
         assertEquals(1, testvendorlist.getSize());
-        testvendorlist.removeVendors("Always & Forever Events");
+        try {
+            testvendorlist.removeVendors("Always & Forever Events");
+        } catch (NameNotFoundException e) {
+            fail("Exception not thrown");
+        }
         assertFalse(testvendorlist.iterator().hasNext());
     }
 }

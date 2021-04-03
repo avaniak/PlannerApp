@@ -31,3 +31,30 @@ Given the customization and tailoring that each couple or family requires for th
 that takes care of these details could make the whole planning process more efficient. 
 
 
+**Phase 4 | Task 2**
+
+To make the program more robust, I added three exceptions. 
+1.) NameNotFoundException: added to the removeVendor() method in the VendorList class which will give an error if the 
+                           name entered in the text field did not match any of the Vendor names in the existing list
+                           
+2.) ListNotFoundException: this exception is added to the updateVendorListButton() method in the MainJFrame class.
+                           Previously, the user was able to add data to the main text area without initially creating 
+                           a new list. Now, if the user tries to update a vendor, the program will alert the 
+                           user that they need to create a new Vendor list first.
+                           
+3.) StringEmptyException:  this exception is added to the updateVendorListButton() and removeVendorListButtton() in the
+                           MainJFrame Class. Previously, the user was able to click the add / remove button if the text
+                           field was empty / blank. Now, if the user tries to update or delete a vendor with an empty 
+                           text field, the program will alert the user that they cannot keep the textfield empty.
+                           
+
+**Phase 4 | Task 3**
+1.) Different Categories of Vendor Lists: instead of having a field for Category, I would design the program so that
+the user is able to create different Vendor Lists (ex: Decor Vendor List, Florist Vendor List). I would then change the
+Vendor class to have fields: name, address, URL(website). 
+
+2.) MainJFrame has a lot of high coupling at the moment. With more time, I would create a separate class which creates 
+and adds the actionlistener to the buttons 
+
+3.) MainJFrame also consists of all the main text area GUI, I would create separate classes for the different panels 
+

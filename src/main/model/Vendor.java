@@ -13,6 +13,8 @@ public class Vendor implements Writable {
         this.category = category;
     }
 
+
+    //getters
     public String getName() {
         return name;
     }
