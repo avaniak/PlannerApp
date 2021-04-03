@@ -1,8 +1,8 @@
 package ui;
 
-import exceptions.ListNotFoundException;
+import ui.exceptions.ListNotFoundException;
 import exceptions.NameNotFoundException;
-import exceptions.StringEmptyException;
+import ui.exceptions.StringEmptyException;
 import model.Category;
 import model.Vendor;
 import model.VendorList;

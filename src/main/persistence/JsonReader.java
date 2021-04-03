@@ -1,6 +1,6 @@
 package persistence;
 
-import exceptions.StringEmptyException;
+import ui.exceptions.StringEmptyException;
 import model.Category;
 import model.Vendor;
 import model.VendorList;
