@@ -18,6 +18,7 @@ public class AdminLogin implements ActionListener {
 
     private static JButton loginButton;
 
+    // MODIFIES: this
     // EFFECTS: Creates the admin login window
     public AdminLogin() {
         panel = new JPanel();

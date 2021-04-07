@@ -183,6 +183,8 @@ public class MainJFrame extends JFrame {
     // REQUIRES: button + user enters Vendor name in text field
     // MODIFIES: list
     // EFFECTS: Deletes vendor from the vendor list
+    //          throws StringEmptyException if user tries to delete a vendor with an empty text field
+    //          catches NameNotFoundException if user enters a vendor name that is not in the list
     private void deleteVendorListButton() {
         deleteVendorList.addActionListener(new ActionListener() {
             @Override
@@ -213,6 +215,7 @@ public class MainJFrame extends JFrame {
     // REQUIRES: button
     // MODIFIES: list
     // EFFECTS: Saves vendor list
+    //          throws a FileNotFoundException if cannot locate / write to file
     private void saveVendorListButton() {
         saveVendorList.addActionListener(new ActionListener() {
             @Override
@@ -232,9 +235,11 @@ public class MainJFrame extends JFrame {
         });
     }
 
-    // REQUIRES: button + user enters Vendor name in text field
+    // REQUIRES: button
     // MODIFIES: list
     // EFFECTS: Adds vendor in the vendor list
+    //          throws ListNotFoundException if user tries to add a vendor prior to creating a new vendor list
+    //          throws StringEmptyException if user tries to add a vendor with an empty textfield
     private void updateVendorListButton() {
         updateVendorList.addActionListener(new ActionListener() {
             @Override

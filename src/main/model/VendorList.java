@@ -12,6 +12,7 @@ public class VendorList implements Writable, Iterable<Vendor> {
     private String name;
     ArrayList<Vendor> vendorList;
 
+    // CONSTRUCTOR
     public VendorList(String name) {
         this.name = name;
         vendorList = new ArrayList<>();
@@ -24,14 +25,15 @@ public class VendorList implements Writable, Iterable<Vendor> {
         return vendorList;
     }
 
+    // EFFECTS: Gets name
     public String getName() {
         return name;
     }
 
 
-
     // MODIFIES: this
     // EFFECTS: helper function for deleting decor vendor name from list
+    //          throws NameNotFoundException if user leaves text field empty
     public void removeVendors(String name) throws NameNotFoundException {
         Vendor found = null;
         for (Vendor v : vendorList) {
@@ -75,6 +77,8 @@ public class VendorList implements Writable, Iterable<Vendor> {
         return vendorList.contains(vendor.getName());
     }
 
+    // EFFECTS: create + return new JSON Object and add name + category
+
     @Override
     public JSONObject toJson() {
         JSONObject json = new JSONObject();
@@ -83,6 +87,7 @@ public class VendorList implements Writable, Iterable<Vendor> {
         return json;
     }
 
+    // Return vendors in the VendorList as a JSON array
     private JSONArray vendorlisttoJson() {
         JSONArray jsonArray = new JSONArray();
 
@@ -92,6 +97,7 @@ public class VendorList implements Writable, Iterable<Vendor> {
         return jsonArray;
     }
 
+    // EFFECTS: iterates through the vendors in the vendor list array
     @Override
     public Iterator<Vendor> iterator() {
         return vendorList.iterator();
