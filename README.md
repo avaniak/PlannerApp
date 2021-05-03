@@ -34,9 +34,10 @@ that takes care of these details could make the whole planning process more effi
 
 1.) Download or clone this repository to your computer 
 
-3.) Right click and run the application from the GUI class (src > main > ui > GUI)
+2.) Right click and run the application from the GUI class (src > main > ui > GUI)
 
 **Making the program robust**
+
 To make the program more robust, I added three exceptions. 
 1.) NameNotFoundException: added to the removeVendor() method in the VendorList class which will give an error if the 
                            name entered in the text field did not match any of the Vendor names in the existing list
@@ -53,6 +54,7 @@ To make the program more robust, I added three exceptions.
                            
 
 **To-dos**
+
 1.) Different Categories of Vendor Lists: instead of having a field for Category, I would design the program so that
 the user is able to create different Vendor Lists (ex: Decor Vendor List, Florist Vendor List). I would then change the
 Vendor class to have fields: name, address, URL(website). 
