@@ -31,8 +31,10 @@ Given the customization and tailoring that each couple or family requires for th
 that takes care of these details could make the whole planning process more efficient. 
 
 **How to run the app**
+
 1.) Download or clone this repository to your computer 
-2.) Right click and run the application from the GUI class (src > main > ui > GUI)
+
+3.) Right click and run the application from the GUI class (src > main > ui > GUI)
 
 **Making the program robust**
 To make the program more robust, I added three exceptions. 
